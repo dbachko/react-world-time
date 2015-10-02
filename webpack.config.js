@@ -4,8 +4,8 @@ var _ = require('lodash');
 var webpack = require('webpack');
 
 var config = {
-  fileName: 'world-clock',
-  src: './src/scripts/WorldClock.jsx'
+  fileName: 'WorldTime',
+  src: './src/scripts/WorldTime.jsx'
 };
 
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
     path: __dirname + '/dist',
     filename: config.fileName + '.js',
     libraryTarget: 'umd',
-    library: 'WorldClock'
+    library: 'WorldTime'
   },
   externals: {
     react: {

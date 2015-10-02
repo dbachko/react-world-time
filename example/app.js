@@ -5,7 +5,7 @@ var App = React.createClass({
   render: function() {
     return (
       <div className='app-wrapper'>
-        <WorldClock
+        <WorldTime
           cities={[{name: 'NYC', tz: 'America/New_York'}]}
         />
       </div>

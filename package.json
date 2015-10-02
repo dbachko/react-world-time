@@ -1,6 +1,6 @@
 {
   "name": "react-world-time",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "World clock widget for React",
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
     "url": "https://github.com/dbachko"
   },
   "license": "MIT",
-  "main": "./lib/scripts/world-clock.js",
+  "main": "./lib/scripts/WorldTime.js",
   "scripts": {
     "start": "./node_modules/gulp/bin/gulp.js",
     "prerelease": "babel src --out-dir lib && NODE_ENV=production webpack --config webpack.config.js"

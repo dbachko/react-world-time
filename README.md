@@ -11,7 +11,7 @@ gulp
 
 ## Component API
 
-`<Clock>` component:
+`<WorldTime>` component:
 
 Property | Type | Default | Required | Description
 -------- | ---- | ------- | -------- |-----------

@@ -7,7 +7,7 @@ const ClockContainer = require('./components/ClockContainer');
 const SearchBar = require('./components/Search');
 
 
-var WorldClock = React.createClass({
+var WorldTime = React.createClass({
 
   mixins: [SetIntervalMixin],
 
@@ -92,4 +92,4 @@ var WorldClock = React.createClass({
 });
 
 
-module.exports = WorldClock;
+module.exports = WorldTime;
