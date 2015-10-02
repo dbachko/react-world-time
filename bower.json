@@ -1,0 +1,20 @@
+{
+  "name": "react-world-time",
+  "version": "0.0.7",
+  "authors": [
+    "Dzmitry"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "src/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}

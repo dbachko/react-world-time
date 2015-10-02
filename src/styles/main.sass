@@ -1,0 +1,52 @@
+@import "utils"
+@import "variables"
+@import "fonts"
+@import "select"
+
+/* clock styles */
+#{$prefixClass}
+  display: flex
+  flex-direction: column
+  cursor: default
+
+  ::-moz-selection
+    background-color: transparent
+
+  ::selection
+    background-color: transparent
+
+
+.clock-container
+  display: flex
+  margin-top: 5px
+  margin-bottom: 5px
+  align-items: center
+
+  .clock-el
+    flex: 1 1 50%
+    display: flex
+    padding-left: 5px
+    padding-right: 5px
+    justify-content: space-between
+    align-items: center
+    font-size: 0.9em
+    overflow: hidden
+
+    span
+      overflow: hidden
+      white-space: nowrap
+      text-overflow: ellipsis
+
+  .clock-el__digital
+    flex-direction: column
+    justify-content: center
+
+  .btn-remove-container
+    flex-basis: 15%
+
+    .btn-remove
+      width: 14px
+      height: 14px
+      border-radius: 8px
+      background-color: $iconErrorColor
+      border: 1px solid darken($iconErrorColor, $darkenAmount)
