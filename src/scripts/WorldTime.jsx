@@ -11,6 +11,10 @@ var WorldTime = React.createClass({
 
   mixins: [SetIntervalMixin],
 
+  propTypes: {
+    isEditOn: React.PropTypes.bool
+  },
+
   getDefaultProps () {
     return {
       time: moment(),
@@ -24,9 +28,7 @@ var WorldTime = React.createClass({
   getInitialState () {
     return {
       time: this.props.time,
-      cities: this.props.cities,
-      showSearch: false,
-      showRemove: false
+      cities: this.props.cities
     };
   },
 
@@ -38,24 +40,11 @@ var WorldTime = React.createClass({
     this.setState({ time: moment() });
   },
 
-  toggleCitySearch () {
-    this.setState({
-      showSearch: !this.state.showSearch
-    });
-  },
-
-  toggleCityRemove () {
-    this.setState({
-      showRemove: !this.state.showRemove
-    });
-  },
-
   addCity (city, cityObject) {
     if(!cityObject.length) return;
 
     let {timezone: tz, label: name} = cityObject[0];
     this.state.cities.push({ tz, name });
-    this.toggleCitySearch();
   },
 
   handleRemoveClock (key) {
@@ -76,15 +65,13 @@ var WorldTime = React.createClass({
               time: this.state.time.clone().tz(city.tz),
               name: city.name,
               removeClock: this.handleRemoveClock.bind(this, key),
-              showRemove: this.state.showRemove
+              showRemove: this.props.isEditOn
             })
           })
         }
         <SearchBar
-          showSearch={this.state.showSearch}
+          showSearch={this.props.isEditOn}
           onAddCity={this.addCity} />
-        <button onClick={this.toggleCitySearch}>+</button>
-        <button onClick={this.toggleCityRemove}>-</button>
       </div>
     );
   }
