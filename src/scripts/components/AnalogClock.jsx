@@ -13,6 +13,11 @@ const COLORS = {
 
 var AnalogClock = React.createClass({
 
+  // propTypes: {
+  //   time: React.PropTypes.time
+  //   city:
+  // },
+
   getHourMarks () {
     return _.range(0, 360, 30).map((angle, idx) => {
       return <rect
@@ -26,7 +31,7 @@ var AnalogClock = React.createClass({
     });
   },
 
-  getHoursHand () {
+  getHoursHand (isDay) {
     let hours = this.props.time.hours();
     return <rect
       key='h'
@@ -34,11 +39,11 @@ var AnalogClock = React.createClass({
       height='17'
       x='48.375'
       y='33'
-      fill={COLORS.nero}
+      fill={isDay ? COLORS.nero : COLORS.concrete}
       transform={`rotate(${hours * 30} 50 50)`}/>
   },
 
-  getMinutesHand () {
+  getMinutesHand (isDay) {
     let minutes = this.props.time.minutes();
     return <rect
       key='m'
@@ -46,7 +51,7 @@ var AnalogClock = React.createClass({
       height='29'
       x='48.375'
       y='20'
-      fill={COLORS.nero}
+      fill={isDay ? COLORS.nero : COLORS.concrete}
       transform={`rotate(${minutes * 6} 50 50)`}/>
   },
 
@@ -63,20 +68,21 @@ var AnalogClock = React.createClass({
   },
 
   render () {
+    let {isDay} = this.props.city;
     return (
       <div className='clock-el clock-el__analog'>
 
         <svg width='100%' height='100%' viewBox='0 0 100 100'>
 
-          <ellipse rx='50' ry='50' cx='50' cy='50' fill={COLORS.concrete}></ellipse>
+          <ellipse rx='50' ry='50' cx='50' cy='50' fill={isDay ? COLORS.concrete : COLORS.nero}></ellipse>
 
           { this.getHourMarks() }
 
-          { this.getHoursHand() }
+          { this.getHoursHand(isDay) }
 
-          { this.getMinutesHand() }
+          { this.getMinutesHand(isDay) }
 
-          <ellipse rx='3.75' ry='3.75' cx='50' cy='50' fill={COLORS.nero}></ellipse>
+          <ellipse rx='3.75' ry='3.75' cx='50' cy='50' fill={isDay ? COLORS.nero : COLORS.concrete}></ellipse>
 
           { this.getSecondsHand() }
 

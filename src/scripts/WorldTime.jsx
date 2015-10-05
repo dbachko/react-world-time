@@ -5,7 +5,8 @@ const moment = require('moment-timezone');
 const SetIntervalMixin = require('./SetIntervalMixin');
 const ClockContainer = require('./components/ClockContainer');
 const SearchBar = require('./components/Search');
-
+const SunCalc = require('suncalc');
+const _ = require('lodash');
 
 var WorldTime = React.createClass({
 
@@ -20,7 +21,11 @@ var WorldTime = React.createClass({
       time: moment(),
       cities: [{
         name: 'New York City',
-        tz: 'America/New_York'
+        tz: 'America/New_York',
+        geopoint: {
+          lat: 40.71427,
+          lon: -74.00597
+        }
       }]
     };
   },
@@ -34,6 +39,7 @@ var WorldTime = React.createClass({
 
   componentDidMount () {
     this.setInterval(this.tick, 1000);
+    this.calcSun();
   },
 
   tick () {
@@ -43,14 +49,28 @@ var WorldTime = React.createClass({
   addCity (city, cityObject) {
     if(!cityObject.length) return;
 
-    let {timezone: tz, label: name} = cityObject[0];
-    this.state.cities.push({ tz, name });
+    let {timezone: tz, label: name, geopoint} = cityObject[0];
+    this.state.cities.push({tz, name, geopoint});
+    this.calcSun();
   },
 
   handleRemoveClock (key) {
     this.setState({
       cities: this.state.cities.filter((el, idx) => {
         return idx !== key;
+      })
+    });
+  },
+
+  calcSun () {
+    this.setState({
+      cities: this.state.cities.map((city, idx) => {
+        let {time} = this.state,
+            {lat, lon} = city.geopoint,
+            {sunset, sunrise} = SunCalc.getTimes(time, lat, lon);
+        return _.assign(city, {
+          isDay: time.isBetween(sunrise, sunset)
+        });
       })
     });
   },
@@ -62,10 +82,10 @@ var WorldTime = React.createClass({
           this.state.cities.map((city, key) => {
             return React.createElement(ClockContainer, {
               key,
+              city,
               time: this.state.time.clone().tz(city.tz),
-              name: city.name,
               removeClock: this.handleRemoveClock.bind(this, key),
-              showRemove: this.props.isEditOn
+              showRemove: this.props.isEditOn,
             })
           })
         }

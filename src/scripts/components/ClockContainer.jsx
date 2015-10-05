@@ -19,10 +19,12 @@ var ClockContainer = React.createClass({
           ) : null
         }
         <div className='clock-el clock-city'>
-          <div className='clock-el__cityname'>{this.props.name}</div>
+          <div className='clock-el__cityname'>{this.props.city.name}</div>
           <DigiClock time={this.props.time} />
         </div>
-        <AnalogClock time={this.props.time} />
+        <AnalogClock
+          time={this.props.time}
+          city={this.props.city}/>
       </div>
     );
   }
