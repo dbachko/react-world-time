@@ -19,8 +19,8 @@ var WorldTime = React.createClass({
     return {
       time: moment(),
       cities: [{
-        name: 'UTC',
-        tz: 'UTC'
+        name: 'New York City',
+        tz: 'America/New_York'
       }]
     };
   },

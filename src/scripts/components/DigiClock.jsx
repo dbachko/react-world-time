@@ -6,22 +6,23 @@ const moment = require('moment-timezone');
 
 var DigiClock = React.createClass({
 
-  dayDiff (date) {
-    let now = moment();
-    if(date.isBefore(now, 'day')) {
-      return 'Yesterday';
-    }
-    if(date.isAfter(now, 'day')) {
+  getDayName () {
+    let currentDay = this.props.time.format('DDD'),
+        localDay = moment().format('DDD');
+    if(currentDay > localDay) {
       return 'Tomorrow';
+    }
+    if(currentDay < localDay) {
+      return 'Yesterday';
     }
     return 'Today';
   },
 
   render () {
     return (
-      <div className='clock-el clock-el__digital'>
-        <div>{this.props.time.format('LT')}</div>
-        <div>{this.dayDiff(this.props.time)}</div>
+      <div className='clock-el__digital'>
+        <span>{this.getDayName()} </span>
+        <span>{this.props.time.format('LT')}</span>
       </div>
     );
   }

@@ -18,9 +18,11 @@ var ClockContainer = React.createClass({
             </div>
           ) : null
         }
-        <div className='clock-el'><span>{this.props.name}</span></div>
+        <div className='clock-el clock-city'>
+          <div className='clock-el__cityname'>{this.props.name}</div>
+          <DigiClock time={this.props.time} />
+        </div>
         <AnalogClock time={this.props.time} />
-        <DigiClock time={this.props.time} />
       </div>
     );
   }

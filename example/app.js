@@ -18,7 +18,7 @@ var App = React.createClass({
     return (
       <div className='app-wrapper'>
         <WorldTime
-          cities={[{name: 'NYC', tz: 'America/New_York'}]}
+          cities={[{name: 'New York City', tz: 'America/New_York'}]}
           isEditOn={this.state.isEditOn}/>
         <button onClick={this.toggleEdit}>Edit</button>
       </div>

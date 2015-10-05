@@ -37,9 +37,23 @@
       white-space: nowrap
       text-overflow: ellipsis
 
+  .clock-city
+    flex-direction: column
+    align-items: flex-start
+    line-height: 24px
+
   .clock-el__digital
     flex-direction: column
     justify-content: center
+
+  .clock-el__analog
+    flex: 1 1
+    svg
+      border: 1px solid $tertiaryLabelColor
+      border-radius: 100%
+
+  .clock-el__cityname
+    font-weight: 600
 
   .btn-remove-container
     flex-basis: 15%
