@@ -41,7 +41,7 @@ var Search = React.createClass({
           this.props.showSearch ? (
             <Select
               autoFocus
-              name="search-city"
+              name='search-city'
               value={this.state.searchTerm}
               onChange={this.props.onAddCity}
               className='search-city'

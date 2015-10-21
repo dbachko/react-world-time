@@ -33,13 +33,8 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.(js|jsx)$/,
-      loader: 'jsx-loader?harmony'
-    }, {
-      test: /\.(js|jsx)$/,
-      loader: 'jsx-loader?insertPragma=React.DOM'
-    }, {
-      test: /\.(js|jsx)$/,
-      exclude: /node_modules/, loader: 'babel-loader'
+      exclude: /(node_modules|bower_components)/,
+      loader: 'babel'
     }, {
       include: /\.json$/,
       loaders: ['json-loader']

@@ -34,4 +34,4 @@ var App = React.createClass({
 
 });
 
-React.render(<App />, document.getElementById('content'));
+ReactDOM.render(<App />, document.getElementById('content'));
